@@ -1,8 +1,8 @@
 /*
-** FunÁ„o : Sistema de Agendamento de Consultas MÈdicas
+** Fun√ß√£o : Sistema de Agendamento de Consultas M√©dicas
 ** Autor : Erick e Daysila
 ** Data : 18/06/2025
-** ObservaÁıes: Sistema para clÌnica mÈdica com filas EST¡TICA para mÈdico e  DIN¬MICA para enfermagem
+** Observa√ß√µes: Sistema para cl√≠nica m√©dica com filas EST√ÅTICA para m√©dico e  DIN√ÇMICA para enfermagem
 */
 
 #include "agendamento.h"
@@ -22,21 +22,21 @@ int main() {
     
     do {
         printf("\n--- MENU PRINCIPAL ---\n");
-        printf("1. Agendar consulta com MÈdico\n");
+        printf("1. Agendar consulta com M√©dico\n");
         printf("2. Agendar consulta com Enfermagem\n");
-        printf("3. Atender prÛximo paciente do MÈdico\n");
-        printf("4. Atender prÛximo paciente da Enfermagem\n");
-        printf("5. Listar agendamentos do MÈdico\n");
+        printf("3. Atender pr√≥ximo paciente do M√©dico\n");
+        printf("4. Atender pr√≥ximo paciente da Enfermagem\n");
+        printf("5. Listar agendamentos do M√©dico\n");
         printf("6. Listar agendamentos da Enfermagem\n");
         printf("7. Status das filas\n");
         printf("0. Sair\n");
-        printf("Escolha uma opÁ„o: ");
+        printf("Escolha uma op√ß√£o: ");
         scanf("%d", &opcao);
         getchar(); // Limpar buffer
         
         switch(opcao) {
             case 1:
-                printf("\n--- AGENDAMENTO COM M…DICO ---\n");
+                printf("\n--- AGENDAMENTO COM M√âDICO ---\n");
                 printf("Nome do paciente: ");
                 fgets(nome, MAX_NOME, stdin);
                 nome[strcspn(nome, "\n")] = 0;
@@ -94,7 +94,7 @@ int main() {
                 break;
                 
             default:
-                printf("OpÁ„o inv·lida!\n");
+                printf("Op√ß√£o inv√°lida!\n");
                 break;
         }
     } while(opcao != 0);
