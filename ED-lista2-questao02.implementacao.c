@@ -1,8 +1,8 @@
 /*
-** Função : Sistema de Agendamento de Consultas Médicas
+** FunÃ§Ã£o : Sistema de Agendamento de Consultas MÃ©dicas
 ** Autor : Erick e Daysila
 ** Data : 18/06/2025
-** Observações: Implementação do sistema de agendamento
+** ObservaÃ§Ãµes: ImplementaÃ§Ã£o do sistema de agendamento
 */
 
 #include "agendamento.h"
@@ -10,12 +10,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-// ========== IMPLEMENTAÇÃO FILA ESTÁTICA MÉDICO ==========
+// ========== IMPLEMENTAÃ‡ÃƒO FILA ESTÃTICA MÃ‰DICO ==========
 
 FilaMedico* criarFilaMedico() {
     FilaMedico *fila = (FilaMedico*)malloc(sizeof(FilaMedico));
     if (fila == NULL) {
-        printf("Erro: Não foi possível alocar memória para fila do médico.\n");
+        printf("Erro: NÃ£o foi possÃ­vel alocar memÃ³ria para fila do mÃ©dico.\n");
         return NULL;
     }
     
@@ -36,8 +36,8 @@ int filaVaziaMedico(FilaMedico *fila) {
 
 int agendarMedico(FilaMedico *fila, char *nome, char *data, char *hora) {
     if (filaCheiaMedico(fila)) {
-        printf("ATENÇÃO: Médico já tem 5 consultas agendadas para hoje!\n");
-        printf("Não é possível agendar mais consultas.\n");
+        printf("ATENÃ‡ÃƒO: MÃ©dico jÃ¡ tem 5 consultas agendadas para hoje!\n");
+        printf("NÃ£o Ã© possÃ­vel agendar mais consultas.\n");
         return 0;
     }
     
@@ -47,21 +47,21 @@ int agendarMedico(FilaMedico *fila, char *nome, char *data, char *hora) {
     strcpy(fila->pacientes[fila->fim].hora, hora);
     fila->tamanho++;
     
-    printf("? Consulta agendada com MÉDICO!\n");
+    printf("? Consulta agendada com MÃ‰DICO!\n");
     printf("Paciente: %s | Data: %s | Hora: %s\n", nome, data, hora);
-    printf("Posição na fila: %d\n", fila->tamanho);
+    printf("PosiÃ§Ã£o na fila: %d\n", fila->tamanho);
     
     return 1;
 }
 
 int atenderMedico(FilaMedico *fila) {
     if (filaVaziaMedico(fila)) {
-        printf("Não há pacientes agendados com o médico.\n");
+        printf("NÃ£o hÃ¡ pacientes agendados com o mÃ©dico.\n");
         return 0;
     }
     
     Paciente paciente = fila->pacientes[fila->inicio];
-    printf(">>> ATENDENDO PACIENTE DO MÉDICO <<<\n");
+    printf(">>> ATENDENDO PACIENTE DO MÃ‰DICO <<<\n");
     printf("Paciente: %s\n", paciente.nome);
     printf("Data: %s | Hora: %s\n", paciente.data, paciente.hora);
     
@@ -73,10 +73,10 @@ int atenderMedico(FilaMedico *fila) {
 }
 
 void listarAgendamentosMedico(FilaMedico *fila) {
-    printf("\n=== AGENDAMENTOS DO MÉDICO ===\n");
+    printf("\n=== AGENDAMENTOS DO MÃ‰DICO ===\n");
     
     if (filaVaziaMedico(fila)) {
-        printf("Nenhum agendamento para o médico.\n");
+        printf("Nenhum agendamento para o mÃ©dico.\n");
         return;
     }
     
@@ -85,7 +85,7 @@ void listarAgendamentosMedico(FilaMedico *fila) {
     
     int pos = fila->inicio;
     for (int i = 0; i < fila->tamanho; i++) {
-        printf("%d. %s - %s às %s\n", 
+        printf("%d. %s - %s Ã s %s\n", 
             i + 1,
             fila->pacientes[pos].nome,
             fila->pacientes[pos].data,
@@ -101,12 +101,12 @@ void liberarFilaMedico(FilaMedico *fila) {
     }
 }
 
-// ========== IMPLEMENTAÇÃO FILA DINÂMICA ENFERMAGEM ==========
+// ========== IMPLEMENTAÃ‡ÃƒO FILA DINÃ‚MICA ENFERMAGEM ==========
 
 FilaEnfermagem* criarFilaEnfermagem() {
     FilaEnfermagem *fila = (FilaEnfermagem*)malloc(sizeof(FilaEnfermagem));
     if (fila == NULL) {
-        printf("Erro: Não foi possível alocar memória para fila da enfermagem.\n");
+        printf("Erro: NÃ£o foi possÃ­vel alocar memÃ³ria para fila da enfermagem.\n");
         return NULL;
     }
     
@@ -124,7 +124,7 @@ int filaVaziaEnfermagem(FilaEnfermagem *fila) {
 int agendarEnfermagem(FilaEnfermagem *fila, char *nome, char *data, char *hora) {
     NoEnfermagem *novoNo = (NoEnfermagem*)malloc(sizeof(NoEnfermagem));
     if (novoNo == NULL) {
-        printf("Erro: Não foi possível alocar memória para novo agendamento.\n");
+        printf("Erro: NÃ£o foi possÃ­vel alocar memÃ³ria para novo agendamento.\n");
         return 0;
     }
     
@@ -145,7 +145,7 @@ int agendarEnfermagem(FilaEnfermagem *fila, char *nome, char *data, char *hora) 
     
     printf("? Consulta agendada com ENFERMAGEM!\n");
     printf("Paciente: %s | Data: %s | Hora: %s\n", nome, data, hora);
-    printf("Posição na fila: %d\n", fila->tamanho);
+    printf("PosiÃ§Ã£o na fila: %d\n", fila->tamanho);
     printf("(Enfermagem atende 24h, sem limite de agendamentos)\n");
     
     return 1;
@@ -153,7 +153,7 @@ int agendarEnfermagem(FilaEnfermagem *fila, char *nome, char *data, char *hora) 
 
 int atenderEnfermagem(FilaEnfermagem *fila) {
     if (filaVaziaEnfermagem(fila)) {
-        printf("Não há pacientes agendados com a enfermagem.\n");
+        printf("NÃ£o hÃ¡ pacientes agendados com a enfermagem.\n");
         return 0;
     }
     
@@ -193,7 +193,7 @@ void listarAgendamentosEnfermagem(FilaEnfermagem *fila) {
     int contador = 1;
     
     while (atual != NULL) {
-        printf("%d. %s - %s às %s\n", 
+        printf("%d. %s - %s Ã s %s\n", 
             contador,
             atual->paciente.nome,
             atual->paciente.data,
@@ -217,19 +217,19 @@ void liberarFilaEnfermagem(FilaEnfermagem *fila) {
     free(fila);
 }
 
-// ========== FUNÇÕES UTILITÁRIAS ==========
+// ========== FUNÃ‡Ã•ES UTILITÃRIAS ==========
 
 void mostrarStatusFilas(FilaMedico *filaMedico, FilaEnfermagem *filaEnfermagem) {
     printf("\n=== STATUS DAS FILAS DE AGENDAMENTO ===\n");
     printf("----------------------------------------\n");
-    printf("MÉDICO:\n");
+    printf("MÃ‰DICO:\n");
     printf("  Agendamentos: %d/%d\n", filaMedico->tamanho, MAX_MEDICO);
-    printf("  Status: %s\n", filaCheiaMedico(filaMedico) ? "LOTADO" : "Disponível");
+    printf("  Status: %s\n", filaCheiaMedico(filaMedico) ? "LOTADO" : "DisponÃ­vel");
     printf("  Limite: 5 pacientes por dia\n\n");
     
     printf("ENFERMAGEM:\n");
     printf("  Agendamentos: %d\n", filaEnfermagem->tamanho);
-    printf("  Status: Sempre disponível\n");
+    printf("  Status: Sempre disponÃ­vel\n");
     printf("  Atendimento: 24 horas, sem limite\n");
     printf("----------------------------------------\n");
 }
