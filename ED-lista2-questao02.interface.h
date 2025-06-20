@@ -1,9 +1,9 @@
 
 /*
-** FunÁ„o : Sistema de Agendamento de Consultas MÈdicas
+** Fun√ß√£o : Sistema de Agendamento de Consultas M√©dicas
 ** Autor : Erick e Daysila
 ** Data : 18/06/2025
-** ObservaÁıes: Interface do sistema de agendamento
+** Observa√ß√µes: Interface do sistema de agendamento
 */
 
 #ifndef AGENDAMENTO_H
@@ -12,7 +12,7 @@
 #define MAX_NOME 100
 #define MAX_DATA 15
 #define MAX_HORA 10
-#define MAX_MEDICO 5  // Limite de 5 pacientes por dia para mÈdico
+#define MAX_MEDICO 5  // Limite de 5 pacientes por dia para m√©dico
 
 // Estrutura para representar um paciente
 typedef struct {
@@ -21,7 +21,7 @@ typedef struct {
     char hora[MAX_HORA];
 } Paciente;
 
-// Fila Est·tica para MÈdico (m·ximo 5 pacientes)
+// Fila Est√°tica para M√©dico (m√°ximo 5 pacientes)
 typedef struct {
     Paciente pacientes[MAX_MEDICO];
     int inicio;
@@ -29,20 +29,20 @@ typedef struct {
     int tamanho;
 } FilaMedico;
 
-// NÛ para Fila Din‚mica da Enfermagem
+// N√≥ para Fila Din√¢mica da Enfermagem
 typedef struct NoEnfermagem {
     Paciente paciente;
     struct NoEnfermagem *proximo;
 } NoEnfermagem;
 
-// Fila Din‚mica para Enfermagem (sem limite)
+// Fila Din√¢mica para Enfermagem (sem limite)
 typedef struct {
     NoEnfermagem *inicio;
     NoEnfermagem *fim;
     int tamanho;
 } FilaEnfermagem;
 
-// FunÁıes para Fila do MÈdico (Est·tica)
+// Fun√ß√µes para Fila do M√©dico (Est√°tica)
 FilaMedico* criarFilaMedico();
 int agendarMedico(FilaMedico *fila, char *nome, char *data, char *hora);
 int atenderMedico(FilaMedico *fila);
@@ -51,7 +51,7 @@ int filaCheiaMedico(FilaMedico *fila);
 int filaVaziaMedico(FilaMedico *fila);
 void liberarFilaMedico(FilaMedico *fila);
 
-// FunÁıes para Fila da Enfermagem (Din‚mica)
+// Fun√ß√µes para Fila da Enfermagem (Din√¢mica)
 FilaEnfermagem* criarFilaEnfermagem();
 int agendarEnfermagem(FilaEnfermagem *fila, char *nome, char *data, char *hora);
 int atenderEnfermagem(FilaEnfermagem *fila);
@@ -59,7 +59,7 @@ void listarAgendamentosEnfermagem(FilaEnfermagem *fila);
 int filaVaziaEnfermagem(FilaEnfermagem *fila);
 void liberarFilaEnfermagem(FilaEnfermagem *fila);
 
-// FunÁıes utilit·rias
+// Fun√ß√µes utilit√°rias
 void mostrarStatusFilas(FilaMedico *filaMedico, FilaEnfermagem *filaEnfermagem);
 
 #endif
